@@ -13,17 +13,14 @@ $col_1 = $columns->addColumn(2);
 $col_2 = $columns->addColumn(12);
 $col_3 = $columns->addColumn(2);
 
-$clicker = $col_2->add(["Button",$_SESSION["i"],"yellow fluid big"]);
-$save = $col_2->add(["Button","Save","purple big"]);
-$clicker->on("click",function($m){
-  $_SESSION["i"] = $_SESSION["i"] + 1;
-  return $m;
+$val = $col_2->add(["FormField/Line", '45']);
 
+$clicker = $col_2->add(["Button","Click!!!","yellow fluid big"]);
+$clicker->js('click', new \atk4\ui\jsReload($val, ['val' => $val->jsInput()->val(new \atk4\ui\jsExpression('parseInt([])+1', [$val->jsInput()->val()]), $val->jsInput()->focus())]));
 
-
-  $clicker->set("Test");
-  $clicker->js()->reload();
-});
 
 $exit = $app->add(['Button',"Exit","red"]);
 $exit->link(["exit"]);
+
+$x2 = $col_3->add(["Button","click x2","inverted violet"]);
+$pus = $col_3->add(["Button","+0.5 cli/sek","inverted green"]);
